@@ -12,19 +12,19 @@ public class Main
     // instance variables - replace the example below with your own
     private int playerScore = 0;
     private int aiScore = 0;
-    private int rounds = 0;
+    private int roundCount = 0;
     private final int MAX_ROUNDS = 5;
 
     /**
      * Constructor for objects of class Main
      */
     public Main() {
-         menuScreen();
+        menuScreen();
     }
 
     public void gameInstructions() {
         Scanner keyboard = new Scanner(System.in);
-        
+
         System.out.println("");
         System.out.println("Welcome to Prisoners Dilemma!");
         System.out.println("Press Enter to continue...");
@@ -61,7 +61,6 @@ public class Main
         System.out.println("\nPress Enter to continue...");
         keyboard.nextLine();
         clearScreen();
-        
 
     }
 
@@ -107,7 +106,48 @@ public class Main
     }
 
     public void startGame() {
-        
+        playerScore = 0;
+        aiScore = 0;
+        roundCount = 0;
+
+        Scanner keyboard = new Scanner(System.in);
+        String playerChoice = "";
+
+        //  prints what round it is if the round is below max amount of rounds
+        while (roundCount < MAX_ROUNDS) {
+            System.out.println();
+            System.out.println("----Round" + " " + (roundCount + 1) + "----");
+            roundCount++;
+
+            // gets the user choice
+            while (true) {
+                System.out.println();
+                System.out.println("Choose (C)ooperate or (D)efect:");
+                String input = keyboard.nextLine().trim().toLowerCase();
+
+                if (input.equals("c") || input.equals("cooperate")) {
+                    playerChoice = "cooperate";
+                    break;
+                } else if (input.equals("d") || input.equals("defect")) {
+                    playerChoice = "defect";
+                    break;
+                } else {
+                    System.out.println("Invalid choice. Please enter C or D.");
+                }
+            }
+            // gets the AI's choice
+            String aiChoice = getAIChoice();
+
+            // display users and AI's choices
+            System.out.println("You chose: " + playerChoice);
+            System.out.println("AI chose: " + aiChoice);
+        }
+
+    }
+
+    public String getAIChoice() {
+        Random rand = new Random();
+        return rand.nextBoolean() ? "cooperate" : "defect";
     }
 
     public void clearScreen() {
