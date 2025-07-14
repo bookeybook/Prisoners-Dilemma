@@ -9,15 +9,12 @@ import java.util.Random;
  */
 public class Main 
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int playerScore = 0;
     private int aiScore = 0;
     private int roundCount = 0;
     private final int MAX_ROUNDS = 5;
 
-    /**
-     * Constructor for objects of class Main
-     */
     public Main() {
         menuScreen();
     }
@@ -27,6 +24,7 @@ public class Main
 
         System.out.println("");
         System.out.println("Welcome to Prisoners Dilemma!");
+        System.out.println();
         System.out.println("Press Enter to continue...");
         keyboard.nextLine();
         clearScreen();
@@ -42,6 +40,7 @@ public class Main
         System.out.println(" ");
         System.out.println("Imagine two prisoners both got arrested for a crime. Each of them has the option to cooperate with each other");
         System.out.println("or betray the other by confessing to the crime.");
+        System.out.println();
         System.out.println("Press Enter to continue...");
         keyboard.nextLine();
         clearScreen();
@@ -51,6 +50,7 @@ public class Main
         System.out.println("If they cooperate, they get time reduced in their sentence");
         System.out.println("If one betrays while the other cooperates, the betrayer will go free while the one that cooperates goes to prison");
         System.out.println("If both betray, both still get a sentence but a smaller one");
+        System.out.println();
         System.out.println("Press Enter to continue...");
         keyboard.nextLine();
         clearScreen();
@@ -58,7 +58,8 @@ public class Main
         System.out.println(" ");
         System.out.println("DISCLAIMER: This game is purely a simulation and not related to any real-world events.");
         System.out.println("The sole purpose of this program is purely to educate and is not meant to offend in anyway.");
-        System.out.println("\nPress Enter to continue...");
+        System.out.println();
+        System.out.println("Press Enter to continue...");
         keyboard.nextLine();
         clearScreen();
 
@@ -71,7 +72,7 @@ public class Main
         while (!exit) {
             System.out.println("\n--- Prisoner's Dilemma Menu ---");
             System.out.println(" ");
-            System.out.println("1. View Instructions");
+            System.out.println("1. View Instructions/Game Theory");
             System.out.println("2. Start Game");
             System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
@@ -81,6 +82,7 @@ public class Main
                 choice = keyboard.nextInt();
                 keyboard.nextLine(); // Consume newline
             } else {
+                System.out.println();
                 System.out.println("Invalid input. Please enter a number.");
                 keyboard.nextLine(); // Clear invalid input
                 continue;
@@ -136,7 +138,7 @@ public class Main
                 }
             }
             // gets the AI's choice
-            String aiChoice = getAIChoice();
+            String aiChoice = aiRandom();
 
             // display users and AI's choices
             System.out.println("You chose: " + playerChoice);
@@ -144,10 +146,26 @@ public class Main
         }
 
     }
-
-    public String getAIChoice() {
+    
+    // picks between cooperate and defect randomly
+    public String aiRandom() {
         Random rand = new Random();
         return rand.nextBoolean() ? "cooperate" : "defect";
+    }
+    
+    // cooperating first round and then mirrors the users previous move.
+    public void aiTitforTat() {
+        
+    }
+    
+    // always defect
+    public void aiDefect() {
+        
+    }
+    
+    // always cooperate
+    public void aiCooperate() {
+        
     }
 
     public void clearScreen() {
