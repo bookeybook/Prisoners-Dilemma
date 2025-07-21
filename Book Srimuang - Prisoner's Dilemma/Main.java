@@ -14,6 +14,7 @@ public class Main
     private int aiScore = 0;
     private int roundCount = 0;
     private final int MAX_ROUNDS = 5;
+    private String lastPlayerChoice = "";
 
     public Main() {
         menuScreen();
@@ -57,6 +58,8 @@ public class Main
 
         System.out.println(" ");
         System.out.println("DISCLAIMER: This game is purely a simulation and not related to any real-world events.");
+        System.out.println("This program will touch on theme realating to betrayal and cooperation within a fictional prison scenario.");
+        System.out.println("The choices that the AI makes within this program is not a direct reflection of real world ethical behaviour.");
         System.out.println("The sole purpose of this program is purely to educate and is not meant to offend in anyway.");
         System.out.println();
         System.out.println("Press Enter to continue...");
@@ -138,7 +141,8 @@ public class Main
                 }
             }
             // gets the AI's choice
-            String aiChoice = aiRandom();
+            String aiChoice = aiCooperate();
+            lastPlayerChoice = playerChoice;
 
             // display users and AI's choices
             System.out.println("You chose: " + playerChoice);
@@ -146,30 +150,33 @@ public class Main
         }
 
     }
-    
+
     // picks between cooperate and defect randomly
     public String aiRandom() {
         Random rand = new Random();
         return rand.nextBoolean() ? "cooperate" : "defect";
     }
-    
+
     // cooperating first round and then mirrors the users previous move.
-    public void aiTitforTat() {
-        
+    public String aiTitforTat() {
+        if (lastPlayerChoice.equals("")) {
+            return "cooperate";
+        } else {
+            return lastPlayerChoice;
+        }
     }
-    
+
     // always defect
-    public void aiDefect() {
-        
+    public String aiDefect() {
+        return "defect";
     }
-    
+
     // always cooperate
-    public void aiCooperate() {
-        
+    public String aiCooperate() {
+        return "cooperate";
     }
 
     public void clearScreen() {
         System.out.print('\u000C');
     }
 }
-
