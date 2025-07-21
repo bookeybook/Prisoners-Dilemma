@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Main
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Main\ here.\r\n\ \ This\ program\ is\ a\ prisonners\ dilemma\ game,\ the\ aim\ of\ this\ game\ is\ too\ get\ more\ points\ than\ the\ AI\ by\ the\ end\ of\ the\ rounds.\ \r\n\ \ The\ player\ can\ either\ pick\ cooperate\ or\ defect\ and\ based\ on\ what\ the\ AI\ has\ chosen\ on\ the\ same\ round\ the\ player\ will\ either\ gain\ or\ lose\ points.\r\n\ @author\ Book\ Srimuang\r\n\ @version\ Version\ 1,\ 11/06/25\r\n
+comment1.params=
+comment1.target=Main()
+comment2.params=
+comment2.target=void\ gameInstructions()
+comment3.params=
+comment3.target=void\ menuScreen()
+comment4.params=
+comment4.target=void\ startGame()
+comment5.params=
+comment5.target=java.lang.String\ aiRandom()
+comment6.params=
+comment6.target=java.lang.String\ aiTitforTat()
+comment7.params=
+comment7.target=java.lang.String\ aiDefect()
+comment8.params=
+comment8.target=java.lang.String\ aiCooperate()
+comment9.params=
+comment9.target=void\ clearScreen()
+numComments=10
