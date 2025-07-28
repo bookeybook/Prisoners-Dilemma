@@ -16,6 +16,7 @@ public class Main
     private final int MAX_ROUNDS = 5;
     private String lastPlayerChoice = "";
     private boolean gameInProgress = false;
+    private String aiStrategy = ""; // "random", "titfortat", "alwaysdefect", "alwayscooperate"
 
     public static void main(String[] args) {
         new Main();
@@ -122,6 +123,11 @@ public class Main
             aiScore = 0;
             roundCount = 0;
             lastPlayerChoice = "";
+
+            String[] strategies = {"random", "titfortat", "alwaysdefect", "alwayscooperate"};
+            Random rand = new Random();
+            aiStrategy = strategies[rand.nextInt(strategies.length)];
+            System.out.println(aiStrategy);
         } else {
             System.out.println("Current scores:");
             System.out.println("Your score: " + playerScore);
@@ -129,7 +135,7 @@ public class Main
         }
 
         Scanner keyboard = new Scanner(System.in);
-        String playerChoice = "";
+        String playerChoice = "";                                                                                                                       
 
         //  prints what round it is if the round is below max amount of rounds
         while (roundCount < MAX_ROUNDS) {
@@ -158,8 +164,9 @@ public class Main
                 }
 
             }
+            
             // gets the AI's choice
-            String aiChoice = aiCooperate();
+            String aiChoice = getAiMove();
             lastPlayerChoice = playerChoice;
 
             // display users and AI's choices
@@ -184,9 +191,9 @@ public class Main
 
             roundCount++;
         }
-
+        gameSummary();
     }
-    
+
     // updates player and ai scores based on their choices.
     public void scoreSystem(String playerChoice, String aiChoice) {
         if (playerChoice.equals("cooperate") && aiChoice.equals("cooperate")) {
@@ -228,7 +235,66 @@ public class Main
     public String aiCooperate() {
         return "cooperate";
     }
-    
+
+    public String getAiMove() {
+        switch (aiStrategy) {
+            case "random":
+                return aiRandom();
+            case "titfortat":
+                return aiTitforTat();
+            case "alwaysdefect":
+                return aiDefect();
+            case "alwayscooperate":
+                return aiCooperate();
+            default:
+                return aiRandom(); // fallback
+        }
+    }
+
+    public void gameSummary() {
+        clearScreen();
+        Scanner keyboard = new Scanner(System.in);
+
+        // displays sum of users points and ai points
+        System.out.println("\n--- Game Summary ---");
+        System.out.println("Your score: " + playerScore);
+        System.out.println("AI score: " + aiScore);
+
+        // checks to see who won and who lost and then displays a message based on that
+        if (playerScore > aiScore) {
+            System.out.println("You win!");
+        } else if (playerScore < aiScore) {
+            System.out.println("AI wins!");
+        } else {
+            System.out.println("It's a tie!");
+        }
+
+        System.out.println("\nWhat would you like to do next?");
+        System.out.println("1. Play again");
+        System.out.println("2. Return to main menu");
+        System.out.println("3. Exit");
+
+        while (true) {
+            System.out.print("Enter your choice: ");
+            String choice = keyboard.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    startGame(true); // Play again
+                    return;
+                case "2":
+                    menuScreen(); // Return to main menu
+                    return;
+                case "3":
+                    System.out.println("Goodbye!");
+                    System.exit(0); // Exit program
+                    break;
+                default:
+                    System.out.println("Invalid option. Please enter 1, 2, or 3.");
+            }
+        }
+    }
+
     // clears screen
     public void clearScreen() {
         System.out.print('\u000C');
