@@ -127,7 +127,7 @@ public class Main
             String[] strategies = {"random", "titfortat", "alwaysdefect", "alwayscooperate"};
             Random rand = new Random();
             aiStrategy = strategies[rand.nextInt(strategies.length)];
-            System.out.println(aiStrategy);
+            //System.out.println(aiStrategy); // displays chosen AI stratgy, here for testing.
         } else {
             System.out.println("Current scores:");
             System.out.println("Your score: " + playerScore);
