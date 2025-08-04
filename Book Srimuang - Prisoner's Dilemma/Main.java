@@ -13,7 +13,7 @@ public class Main
     private int playerScore = 0;
     private int aiScore = 0;
     private int roundCount = 0;
-    private final int MAX_ROUNDS = 5;
+    private final int MAX_ROUNDS = (int) Math.random() * 6 + 10;
     private String lastPlayerChoice = "";
     private boolean gameInProgress = false;
     private String aiStrategy = ""; // "random", "titfortat", "alwaysdefect", "alwayscooperate"
@@ -29,37 +29,46 @@ public class Main
     public void gameInstructions() {
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("\nWelcome to Prisoners Dilemma!");
-        System.out.println("Press Enter to continue...");
+        System.out.println("\nWelcome to Prisoner's Dilemma!");
+        System.out.println("\nPress Enter to continue.");
         keyboard.nextLine();
         clearScreen();
 
-        System.out.println("\nPrisoners Dilemma concept in game theory that demonstrates a conflict between");
-        System.out.println("your own individual self and the collective well-being of everyone else");
+        System.out.println("\nPrisoner's Dilemma is a concept in game theory that demonstrates a conflict between");
+        System.out.println("your own individual self-interest and the collective well-being of others.");
         System.out.println("It highlights how what's best for the individual isn't always best for everyone.");
-        System.out.println("Press Enter to continue...");
+        System.out.println("\nPress Enter to continue.");
         keyboard.nextLine();
         clearScreen();
 
-        System.out.println("\nImagine two prisoners both got arrested for a crime. Each of them has the option to cooperate with each other");
+        System.out.println("\nImagine two prisoners have been arrested for a crime. Each of them has the option to cooperate with the other");
         System.out.println("or betray the other by confessing to the crime.");
-        System.out.println("\nPress Enter to continue...");
+        System.out.println("\nPress Enter to continue.");
         keyboard.nextLine();
         clearScreen();
 
         System.out.println("\nDepending on their choices, they face different consequences:");
-        System.out.println("If they cooperate, they get time reduced in their sentence");
-        System.out.println("If one betrays while the other cooperates, the betrayer will go free while the one that cooperates goes to prison");
-        System.out.println("If both betray, both still get a sentence but a smaller one");
-        System.out.println("\nPress Enter to continue...");
+        System.out.println("- If both cooperate, they receive reduced sentences.");
+        System.out.println("- If one betrays while the other cooperates, the betrayer goes free while the cooperator gets a full sentence.");
+        System.out.println("- If both betray, they both receive moderate sentences.");
+        System.out.println("\nPress Enter to continue.");
+        keyboard.nextLine();
+        clearScreen();
+
+        System.out.println("\nIn this game, your goal is to earn as many points as possible over several rounds.");
+        System.out.println("Each round, you must choose to either COOPERATE (press 'C') or DEFECT (press 'D').");
+        System.out.println("The AI opponent will also make a decision, based on a hidden strategy.");
+        System.out.println("Different combinations of choices will lead to different scores for you and the AI.");
+        System.out.println("Think carefully—your decisions affect both your own score and the AI's.");
+        System.out.println("\nPress Enter to continue.");
         keyboard.nextLine();
         clearScreen();
 
         System.out.println("\nDISCLAIMER: This game is purely a simulation and not related to any real-world events.");
-        System.out.println("This program will touch on theme realating to betrayal and cooperation within a fictional prison scenario.");
-        System.out.println("The choices that the AI makes within this program is not a direct reflection of real world ethical behaviour.");
-        System.out.println("The sole purpose of this program is purely to educate and is not meant to offend in anyway.");
-        System.out.println("\nPress Enter to continue...");
+        System.out.println("It touches on themes relating to betrayal and cooperation within a fictional prison scenario.");
+        System.out.println("The choices that the AI makes within this program are not a direct reflection of real-world ethical behavior.");
+        System.out.println("The sole purpose of this program is to educate, and it is not intended to offend in any way.");
+        System.out.println("\nPress Enter to continue.");
         keyboard.nextLine();
         clearScreen();
 
@@ -164,7 +173,7 @@ public class Main
                 }
 
             }
-            
+
             // gets the AI's choice
             String aiChoice = getAiMove();
             lastPlayerChoice = playerChoice;
