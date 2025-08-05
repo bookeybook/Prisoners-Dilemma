@@ -13,7 +13,7 @@ public class Main
     private int playerScore = 0;
     private int aiScore = 0;
     private int roundCount = 0;
-    private final int MAX_ROUNDS = (int) Math.random() * 6 + 10;
+    private int maxRounds;
     private String lastPlayerChoice = "";
     private boolean gameInProgress = false;
     private String aiStrategy = ""; // "random", "titfortat", "alwaysdefect", "alwayscooperate"
@@ -78,6 +78,7 @@ public class Main
         clearScreen();
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
+        
 
         while (!exit) {
             System.out.println("\n--- Prisoner's Dilemma Menu ---");
@@ -125,14 +126,16 @@ public class Main
     public void startGame(boolean NewGame) {
         gameInProgress = true;
         clearScreen();
-
         // checks if the game is new or resuming. 
         if (NewGame) {
             playerScore = 0;
             aiScore = 0;
             roundCount = 0;
             lastPlayerChoice = "";
-
+            
+            maxRounds = (int)(Math.random() * 11) + 10;
+            System.out.println("Max Rounds: " + maxRounds); // for testing
+            
             String[] strategies = {"random", "titfortat", "alwaysdefect", "alwayscooperate"};
             Random rand = new Random();
             aiStrategy = strategies[rand.nextInt(strategies.length)];
@@ -147,7 +150,7 @@ public class Main
         String playerChoice = "";                                                                                                                       
 
         //  prints what round it is if the round is below max amount of rounds
-        while (roundCount < MAX_ROUNDS) {
+        while (roundCount < maxRounds) {
             System.out.println();
             System.out.println("----Round" + " " + (roundCount + 1) + "----");
 
